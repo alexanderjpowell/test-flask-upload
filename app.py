@@ -12,16 +12,16 @@ def upload_file():
 		f.save(secure_filename(f.filename))
 		try:
 			file = open(f.filename, 'r')
-			results = file.read()
+			results = file.read().splitlines()
 		except:
 			results = 'Error reading file'
 		file.close()
 		f.close()
 		os.remove(f.filename)
 
-		return results
+		return str(results)
 
 	return render_template('upload.html')
 
 if __name__ == '__main__':
-	app.run(debug = False)
+	app.run(debug = True)
